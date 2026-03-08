@@ -1,0 +1,407 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<title>Para Jimena ❤️</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+color:white;
+text-align:center;
+overflow-x:hidden;
+}
+
+/* pantalla inicial */
+
+#inicio{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+#inicio button{
+padding:15px 30px;
+font-size:22px;
+border:none;
+border-radius:10px;
+background:white;
+color:#ff4b6e;
+cursor:pointer;
+}
+
+/* contenido */
+
+#contenido{
+display:none;
+padding:40px;
+}
+
+section{
+margin:140px 0;
+}
+
+h1{
+font-size:50px;
+}
+
+/* contador */
+
+#contador{
+font-size:28px;
+font-weight:bold;
+margin-top:20px;
+}
+
+/* rosas */
+
+.rosa{
+position:fixed;
+top:-20px;
+font-size:28px;
+animation:caer 6s linear;
+}
+
+@keyframes caer{
+0%{transform:translateY(-20px);}
+100%{transform:translateY(110vh);}
+}
+
+/* galeria */
+
+.galeria{
+display:flex;
+justify-content:center;
+align-items:center;
+height:540px;
+margin-top:60px;
+}
+
+.galeria img{
+width:450px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.4);
+display:none;
+}
+
+/* carta */
+
+.carta{
+max-width:650px;
+margin:auto;
+font-size:20px;
+line-height:1.6;
+margin-top:40px;
+}
+
+/* mensaje día de la mujer */
+
+#diaMujer{
+font-size:48px;
+font-weight:bold;
+margin-top:25px;
+}
+
+/* texto dunita */
+
+#textoDunita{
+font-size:16px;
+opacity:0.9;
+margin-top:5px;
+}
+
+/* foto final */
+
+#fotoFinal{
+display:none;
+width:500px;
+margin:50px auto;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.4);
+opacity:0;
+transition:opacity 2s;
+}
+
+/* mensajes finales */
+
+#mensajeFinal{
+display:none;
+font-size:38px;
+margin-top:30px;
+font-weight:bold;
+}
+
+#teAmo{
+display:none;
+font-size:42px;
+margin-top:10px;
+font-weight:bold;
+}
+
+/* botón gatito */
+
+.botonGato{
+background:none;
+border:none;
+cursor:pointer;
+margin-top:15px;
+}
+
+.botonGato img{
+width:120px;
+transition:0.3s;
+}
+
+.botonGato img:hover{
+transform:scale(1.1);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="inicio">
+
+<h1>Jimena ❤️</h1>
+<p>Tengo algo especial para ti</p>
+
+<button onclick="abrirPagina()">Abre esto</button>
+
+</div>
+
+
+<div id="contenido">
+
+<section>
+
+<h1>Para Jimena ❤️</h1>
+<p>Esta página es solo para recordarte lo especial que eres.</p>
+
+</section>
+
+
+<section>
+
+<h2>⏳ Nuestro tiempo juntos</h2>
+<div id="contador"></div>
+
+</section>
+
+
+<section>
+
+<h2>📷</h2>
+
+<div class="galeria">
+
+<img id="foto1" src="foto1.jpg">
+<img id="foto2" src="foto2.jpg">
+<img id="foto3" src="foto3.jpg">
+<img id="foto4" src="foto4.jpg">
+
+</div>
+
+</section>
+
+
+<section>
+
+<h2>💌 Para ti, mi amor</h2>
+
+<div class="carta">
+
+<p>Desde que llegaste a mi vida, muchas cosas cambiaron para bien.</p>
+
+<p>Tu sonrisa, tu forma de ser y la mujer que eres hacen que cada día sea especial.</p>
+
+<p>Gracias por cada momento que compartimos.</p>
+
+<div id="diaMujer">
+FELIZ DÍA DE LA MUJER ❤️
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<h2>💖 Tengo algo más para decirte</h2>
+
+<div id="textoDunita">
+Presiona a Dunita uwu
+</div>
+
+<button class="botonGato" onclick="mostrarFinal()">
+<img src="gatito.png">
+</button>
+
+<br>
+
+<img id="fotoFinal" src="foto5.jpg">
+
+<div id="mensajeFinal">
+✨ Gracias por existir ✨
+</div>
+
+<div id="teAmo">
+❤️ ¡Te amo! ❤️
+</div>
+
+</section>
+
+</div>
+
+
+<audio id="musica" loop>
+<source src="cancion.mp3" type="audio/mpeg">
+</audio>
+
+
+<script>
+
+/* abrir pagina */
+
+function abrirPagina(){
+
+document.getElementById("inicio").style.display="none";
+document.getElementById("contenido").style.display="block";
+
+document.getElementById("musica").play();
+
+setInterval(crearRosa,500);
+
+iniciarGaleria();
+
+}
+
+
+/* contador */
+
+var inicio=new Date("2021-09-13T00:00:00");
+
+function actualizar(){
+
+var ahora=new Date();
+
+var dif=ahora-inicio;
+
+var dias=Math.floor(dif/(1000*60*60*24));
+var horas=Math.floor((dif/(1000*60*60))%24);
+var minutos=Math.floor((dif/(1000*60))%60);
+var segundos=Math.floor((dif/1000)%60);
+
+document.getElementById("contador").innerHTML=
+dias+" días "+horas+" horas "+minutos+" minutos "+segundos+" segundos ❤️";
+
+}
+
+setInterval(actualizar,1000);
+
+
+/* rosas normales */
+
+function crearRosa(){
+
+var rosa=document.createElement("div");
+
+rosa.className="rosa";
+
+rosa.innerHTML="🌹";
+
+rosa.style.left=Math.random()*100+"vw";
+
+document.body.appendChild(rosa);
+
+setTimeout(function(){
+
+rosa.remove();
+
+},6000);
+
+}
+
+
+/* lluvia intensa de rosas */
+
+function lluviaRosas(){
+
+for(let i=0;i<8;i++){
+
+setTimeout(crearRosa,i*100);
+
+}
+
+}
+
+
+/* galeria */
+
+let fotos=["foto1","foto2","foto3","foto4"];
+let index=0;
+
+function iniciarGaleria(){
+
+document.getElementById(fotos[index]).style.display="block";
+
+setInterval(cambiarFoto,3000);
+
+}
+
+function cambiarFoto(){
+
+document.getElementById(fotos[index]).style.display="none";
+
+index++;
+
+if(index>=fotos.length){
+index=0;
+}
+
+document.getElementById(fotos[index]).style.display="block";
+
+}
+
+
+/* final mágico */
+
+function mostrarFinal(){
+
+setInterval(lluviaRosas,200);
+
+let foto=document.getElementById("fotoFinal");
+
+foto.style.display="block";
+
+setTimeout(function(){
+
+foto.style.opacity="1";
+
+},100);
+
+document.getElementById("mensajeFinal").style.display="block";
+
+setTimeout(function(){
+
+document.getElementById("teAmo").style.display="block";
+
+},1200);
+
+}
+
+</script>
+
+</body>
+
+</html>
+```
